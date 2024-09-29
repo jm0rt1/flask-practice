@@ -2,3 +2,4 @@ venv
 *.pyc
 */__pycache__/
 output/logs/
+src/flask_app_1/instance/site.db

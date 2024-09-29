@@ -21,14 +21,14 @@ fi
 # Initialize migrations if not already done
 if [ ! -d "migrations" ]; then
     echo "Initializing migrations..."
-    flask db init
+    flask db init -d ./flask_app_1/migrations
 fi
 
 # Generate and apply migrations
 echo "Generating migrations..."
-flask db migrate -m "Initial migration."
+flask db migrate -d ./flask_app_1/migrations -m "Initial migration."
 echo "Applying migrations..."
-flask db upgrade
+flask db upgrade -d ./flask_app_1/migrations
 
 # Create the database (if necessary)
 python create_db.py
