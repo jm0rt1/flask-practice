@@ -1,6 +1,7 @@
 #!/bin/bash
 # Activate the virtual environment
 source venv/bin/activate
+
 # Navigate to the src directory
 cd "src"
 
@@ -8,7 +9,7 @@ cd "src"
 # Set the PYTHONPATH to include the src directory
 export PYTHONPATH=$(pwd)
 # Set the FLASK_APP environment variable to point to your Flask application
-export FLASK_APP=flask_app_1/app.py
+export FLASK_APP=flask_app_plots/app.py
 # Ensure Flask-Migrate is installed
 pip show Flask-Migrate > /dev/null 2>&1
 if [ $? -ne 0 ]; then
@@ -21,20 +22,20 @@ fi
 # Initialize migrations if not already done
 if [ ! -d "migrations" ]; then
     echo "Initializing migrations..."
-    flask db init -d ./flask_app_1/migrations
+    flask db init -d ./flask_app_plots/migrations
 fi
 
 # Generate and apply migrations
 echo "Generating migrations..."
-flask db migrate -d ./flask_app_1/migrations -m "Initial migration."
+flask db migrate -d ./flask_app_plots/migrations -m "Initial migration."
 echo "Applying migrations..."
-flask db upgrade -d ./flask_app_1/migrations
+flask db upgrade -d ./flask_app_plots/migrations
 
 # Create the database (if necessary)
-python create_db.py
+# python create_db.py
 
 # Run the Flask application
-python flask_app_1/app.py &
+python flask_app_plots/app.py &
 
 # Function to check if the Flask app is running
 check_flask_app() {
