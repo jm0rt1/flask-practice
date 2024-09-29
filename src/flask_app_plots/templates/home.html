@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+
+<body>
+    <h1>Enter X and Y Values</h1>
+    <form method="POST" action="{{ url_for('home') }}">
+        <label for="x_values">X Values (comma-separated):</label>
+        <input type="text" id="x_values" name="x_values" required>
+        <br>
+        <label for="y_values">Y Values (comma-separated):</label>
+        <input type="text" id="y_values" name="y_values" required>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+
+</html>

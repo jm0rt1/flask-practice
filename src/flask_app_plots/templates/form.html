@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Form{% endblock %}
+
+{% block content %}
+<form method="POST" action="{{ url_for('main.form') }}">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.name.label }}<br>
+        {{ form.name(size=32) }}<br>
+        {% for error in form.name.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <input type="submit" value="Submit">
+</form>
+
+<h2>Table Data</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <!-- Add other column headers here if needed -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in table_data %}
+        <tr>
+            <td>{{ row.id }}</td>
+            <td>{{ row.name }}</td>
+            <!-- Add other columns here if needed -->
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
