@@ -1,8 +1,10 @@
-from flask import render_template, request
-import matplotlib.pyplot as plt
-import io
-import base64
 from flask_app_plots import app
+import base64
+import io
+import matplotlib.pyplot as plt
+from flask import render_template, request
+import matplotlib
+matplotlib.use('Agg')  # Use the 'Agg' backend for non-GUI rendering
 
 
 @app.route('/', methods=['GET', 'POST'])
