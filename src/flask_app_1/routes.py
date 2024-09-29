@@ -24,7 +24,7 @@ def form():
         db.session.add(example)
         db.session.commit()
         flash('Form submitted successfully!', 'success')
-        return redirect(url_for('main.home'))
+        return redirect(url_for('main.form'))
 
     # Query the database to get all entries in ExampleModel
     table_data = ExampleModel.query.all()
