@@ -8,13 +8,9 @@
 </head>
 
 <body>
-    <h1>Enter X and Y Values</h1>
-    <form method="POST" action="{{ url_for('home') }}">
-        <label for="x_values">X Values (comma-separated):</label>
-        <input type="text" id="x_values" name="x_values" required>
-        <br>
-        <label for="y_values">Y Values (comma-separated):</label>
-        <input type="text" id="y_values" name="y_values" required>
+    <h1>Upload CSV File</h1>
+    <form method="POST" action="{{ url_for('home') }}" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".csv" required>
         <br>
         <button type="submit">Submit</button>
     </form>
