@@ -7,6 +7,31 @@ source venv/bin/activate
 
 # Set the PYTHONPATH to include the src directory
 export PYTHONPATH=$(pwd)
+# Set the FLASK_APP environment variable to point to your Flask application
+export FLASK_APP=flask_app_1/app.py
+# Ensure Flask-Migrate is installed
+pip show Flask-Migrate > /dev/null 2>&1
+if [ $? -ne 0 ]; then
+    echo "Installing Flask-Migrate..."
+    pip install Flask-Migrate
+else
+    echo "Flask-Migrate is already installed."
+fi
+
+# Initialize migrations if not already done
+if [ ! -d "migrations" ]; then
+    echo "Initializing migrations..."
+    flask db init
+fi
+
+# Generate and apply migrations
+echo "Generating migrations..."
+flask db migrate -m "Initial migration."
+echo "Applying migrations..."
+flask db upgrade
+
+# Create the database (if necessary)
+python create_db.py
 
 # Run the Flask application
 python flask_app_1/app.py &
